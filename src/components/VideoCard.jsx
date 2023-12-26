@@ -1,6 +1,6 @@
 import React from "react";
 
-// importing the imp files 
+// importing the imp files
 import { abbreviateNumber } from "js-abbreviation-number";
 import { Link } from "react-router-dom";
 import { BsFillCheckCircleFill } from "react-icons/bs";
@@ -9,63 +9,55 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import VideoLength from "../shared/videoLength";
 
 const VideoCard = ({ video }) => {
-    return (
-        <Link to={`/video/${video?.videoId}`}>
-            <div className="flex flex-col mb-8">
-                <div className="relative h-48 md:h-40 md:rounded-xl overflow-hidden">
-                    <img
-                        className="h-full w-full object-cover"
-                        src={video?.thumbnails[0]?.url}
-                    />
-                    {/* THIS COMOPMNENT SHOWS THE VIDEO LENGTH AND DURATION ON THE HOME PAGE IN VIDEO CARD AT BOTTOM LEFT SIDE */}
-                    {video.lengthSeconds && (
-                        <VideoLength time={video.lengthSeconds} />
-                    )}
-                </div>
-                {/* THIS IS THE FUNCTION TO SHOW THE creator channel logo VIDEO DETAILS LIKE ,CHANNEL NAME,VIDEO TITLE,ETC */}
-                <div className="flex text-white mt-3">
-                    <div className="flex items-start">
-                        <div className="flex h-9 w-9 rounded-full overflow-hidden">
-                            <img
-                                className="h-full w-full object-cover"
-                                src={video?.author?.avatar[0]?.url}
-                            />
-                        </div>
-                    </div>
-                {/* THIS IS THE FUNCTION TO SHOW THE  VIDEO DETAIL LIKE VIDEO TITLE, vertification tag,ETC */}
-
-                    <div className="flex flex-col ml-3 overflow-hidden">
-                        <span className="text-sm font-bold line-clamp-2">
-                            {video?.title}
-                        </span>
-                        <span className="text-[12px] font-semibold mt-2 text-white/[0.7] flex items-center">
-                            {video?.author?.title}
-                            {video?.author?.badges[0]?.type ===
-                                "VERIFIED_CHANNEL" && (
-                                <BsFillCheckCircleFill className="text-white/[0.5] text-[12px] ml-1" />
-                            )}
-                        </span>
-                {/* THIS IS THE FUNCTION TO SHOW THE Total VIDEO Views  */}
-
-                        <div className="flex text-[12px] font-semibold text-white/[0.7] truncate overflow-hidden">
-                            <span>{`${abbreviateNumber(
-                                video?.stats?.views,
-                                2
-                            )} views`}</span>
-                            <span className="flex text-[24px] leading-none font-bold text-white/[0.7] relative top-[-10px] mx-1">
-                                .
-                            </span>
-                {/* THIS IS THE FUNCTION TO SHOW THE published time line for any video  */}
-
-                            <span className="truncate">
-                                {video?.publishedTimeText}
-                            </span>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <Link to={`/video/${video?.videoId}`}>
+      <div className="flex flex-col mb-8">
+        <div className="relative h-48 md:h-40 md:rounded-xl overflow-hidden">
+          <img
+            className="h-full w-full object-cover"
+            src={video?.thumbnails[0]?.url}
+          />
+          {/* THIS COMOPMNENT SHOWS THE VIDEO LENGTH AND DURATION ON THE HOME PAGE IN VIDEO CARD AT BOTTOM LEFT SIDE */}
+          {video.lengthSeconds && <VideoLength time={video.lengthSeconds} />}
+        </div>
+        {/* THIS IS THE FUNCTION TO SHOW THE creator channel logo VIDEO DETAILS LIKE ,CHANNEL NAME,VIDEO TITLE,ETC */}
+        <div className="flex text-white mt-3">
+          <div className="flex items-start">
+            <div className="flex h-9 w-9 rounded-full overflow-hidden">
+              <img
+                className="h-full w-full object-cover"
+                src={video?.author?.avatar[0]?.url}
+              />
             </div>
-        </Link>
-    );
+          </div>
+          {/* THIS IS THE FUNCTION TO SHOW THE  VIDEO DETAIL LIKE VIDEO TITLE, vertification tag,ETC */}
+
+          <div className="flex flex-col ml-3 overflow-hidden">
+            <span className="text-sm font-bold line-clamp-2">
+              {video?.title}
+            </span>
+            <span className="text-[12px] font-semibold mt-2 text-white/[0.7] flex items-center">
+              {video?.author?.title}
+              {video?.author?.badges[0]?.type === "VERIFIED_CHANNEL" && (
+                <BsFillCheckCircleFill className="text-white/[0.5] text-[12px] ml-1" />
+              )}
+            </span>
+            {/* THIS IS THE FUNCTION TO SHOW THE Total VIDEO Views  */}
+
+            <div className="flex text-[12px] font-semibold text-white/[0.7] truncate overflow-hidden">
+              <span>{`${abbreviateNumber(video?.stats?.views, 2)} views`}</span>
+              <span className="flex text-[24px] leading-none font-bold text-white/[0.7] relative top-[-10px] mx-1">
+                .
+              </span>
+              {/* THIS IS THE FUNCTION TO SHOW THE published time line for any video  */}
+
+              <span className="truncate">{video?.publishedTimeText}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
 };
 
 export default VideoCard;
